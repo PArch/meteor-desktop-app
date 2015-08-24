@@ -24,7 +24,9 @@ app.on('activate-with-no-open-windows', function () {
 app.on('ready', function() {
   start(function (url) {
     var cleanUp = function () {
-      app.quit();
+        if (process.platform != 'darwin') {
+          app.quit();
+        }
       process.exit();
     };
     process.on('exit', cleanUp);
